@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)https://gradeit.cs.washington.edu/uwcse/turnin/code/turnin.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>Homework Turnin</title>
+<style type="text/css">
+/* Grade-It homework turnin page style sheet */
+
+a {
+	color: #aa4400;
+	text-decoration: none;
+}
+
+a:hover {
+	background-color: #FFFF99;
+	text-decoration: underline;
+}
+
+a img {
+	border-width: 0;
+}
+
+.aside {
+	font-size: small;
+}
+
+body {
+	background-color: #ffffff;
+	color: #000000;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida", "Helvetica Neue", "Helvetica", Verdana, Arial, sans-serif;
+	font-size: 10pt;
+	padding: 1em;
+}
+
+#cheatpolicyexplain {
+	color: #800;
+	font-weight: bold;
+}
+
+.cheatwarning {
+	text-indent: -2em;
+	margin-left: 3em;
+}
+
+.deemphasized {
+	color: #666666;
+}
+
+dt {
+	font-weight: bold;
+}
+
+.emphasized {
+	font-weight: bold;
+}
+
+.error, .errorfixed {
+	background-color: #FFFFDD;
+	border: thin solid gray;
+	font-weight: bold;
+}
+
+.error {
+	color: red;
+}
+
+.errorfixed {
+	color: #000099;
+}
+
+#errormessage, .error, #warningmessage, .warning {
+	font-size: 110%;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	margin: 1em;
+}
+
+#errormessage, .error {
+	background-color: #ffe8e8;
+	border: 3px solid #777777;
+	color: red;
+	font-size: larger;
+}
+
+.excitingnews {
+	background-color: #eeeeff;
+	border: 2px dashed #00AA00;
+	overflow: hidden;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.filename {
+	text-decoration: none;
+}
+
+form, #main {
+	padding-top: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 70em;
+}
+
+form td, form th {
+	padding-top: 0.3em;
+}
+
+h1 {
+	margin: 0em;
+	/* margin-top: 0.25em; */
+	padding-top: 0.25em;
+}
+
+.highlight {
+	background-color: yellow;
+}
+
+img {
+	vertical-align: bottom;
+}
+
+img.icon {
+	height: 16px;
+	width: 16px;
+	vertical-align: baseline;
+}
+
+img.imageicon, img.sidebaricon {
+	border: none;
+	height: 16px;
+	width: 16px;
+	vertical-align: middle;
+}
+
+input[readonly], input[readonly="readonly"] {
+	background-color: #DDD;
+	color: #555;
+}
+
+.leftcolumn {
+	padding-right: 20px;
+	text-align: left;
+	vertical-align: top;
+	width: 150px;
+}
+
+#loading {
+	display: none;
+}
+
+.noteslist li {
+	margin-bottom: 0.5em;
+}
+
+.saveforyourrecords {
+	background-color: #ffc;
+	border: 1px dashed red;
+	padding: 0.5em;
+}
+
+.separated {
+	padding-bottom: 2em;
+}
+
+.separatedtop {
+	padding-top: 2em;
+}
+
+.success {
+	color: #070;
+	font-size: 200%;
+	font-weight: bold;
+}
+
+.acceptedproblems {
+	color: #730;
+	font-size: 200%;
+	font-weight: bold;
+}
+
+table {
+	margin: 0px;
+	padding: 0px;
+	border-width: 0px;
+	color: #000000;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+td, th {
+	vertical-align: top;
+	white-space: nowrap;
+}
+
+td.spaced {
+	padding-right: 20px;
+}
+
+tr.evenrow {
+	background-color: #EEEEEE;
+}
+
+.turninlink {
+	background-color: #EEEEEE;
+	border: 2px solid #CCCCCC;
+	float: right;
+	margin-right: 1em;
+	padding: 0.5em;
+}
+
+.urgent {
+	color: #990000;
+	font-weight: bold;
+}
+
+/* ------------------- */
+button:hover, input[type="submit"]:hover {
+	color: #666600;
+}
+
+h1 {
+	padding: 0em;
+	padding-top: 0.25em;
+	text-align: center;
+}
+
+h2 {
+	line-height: 16pt;
+}
+
+h2.spaced {
+	margin-top: 2em;
+}
+
+.invalid {
+	background-color: #ffff00;
+}
+
+#warningmessage, .warning {
+	background-color: #fff8dd;
+	border: 3px solid rgb(125, 85, 0) /* rgb(205, 135, 0) */;
+	color: rgb(125, 85, 0);
+	font-size: larger;
+}
+
+#errormessage p, #warningmessage p, .warning p {
+	margin-top: 0.25em;
+	margin-bottom: 0.25em;
+}
+
+.failure {
+	color: red;
+	font-weight: bold;
+}
+
+.filename {
+	font-family: monospace;
+}
+
+hr {
+	margin-top: 2em;
+}
+
+input[type="submit"] {
+	font-family: Arial, sans-serif;
+	font-size: 18pt;
+	font-weight: bold;
+	padding-left: 2em;
+	padding-right: 2em;
+}
+
+.nametable {
+	 border: none;
+	 border-collapse: collapse;
+	 margin: 0em;
+	 padding: 0em;
+}
+
+.nametable td, .nametable th, td.filename {
+	padding-right: 0.5em;
+}
+
+#submitarea {
+	margin-bottom: 2em;
+	margin-top: 2em;
+	text-align: center;
+}
+
+.surveyarea, .tabcell {
+	display: none;
+}
+
+th {
+	padding-right: 2em;
+	text-align: left;
+}
+
+/* */
+body, html {
+	margin: 0;
+	padding: 0;
+}
+
+.codefile {
+	border: 2px solid #2F6FAB;
+	margin-bottom: 1em;
+	padding: 0;
+}
+
+.codefile h2 {
+	background-color: #2F6FAB;
+	color: white;
+	margin: 0;
+	padding: 0 0.5em 0.25em;
+}
+
+.codefile pre, .codefile xmp {
+	background-color: #F9F9F9;
+	line-height: 1.05em;
+	margin: 0;
+	padding: 0.75em;
+	overflow: auto;
+}
+
+.columnlabel {
+	float: left;
+	font-weight: bold;
+	width: 9em;
+}
+
+.errormessage, .warningmessage {
+	background-color: #FFEEEE;
+	border: 2px dashed red;
+	margin-left: 2em;
+	margin-right: 2em;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+.errormessage h2, .warningmessage h2 {
+	color: red;
+	font-size: larger;
+}
+
+.errormessage pre {
+	font-size: larger;
+	font-weight: bold;
+}
+
+h1 {
+	background-color: #EEEEEE;
+	border-bottom: 2px solid gray;
+	text-align: center;
+}
+
+h1, h2, h3 {
+	white-space: nowrap;
+}
+
+.info {
+	text-align: center;
+}
+
+#main {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+#studentinfoheader {
+	font-size: 12pt;
+	font-weight: normal;
+	margin-left: auto;
+	margin-right: auto;
+	min-width: 20em;
+	width: 20em;
+}
+
+.tooltip {
+	background-color: #FFFFAA;
+	border: 1px solid #999999;
+	margin: 0.5em;
+}
+
+.warningmessage {
+	background-color: #FFFFDD;
+	border: 2px dashed yellow;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+/* geshi styles */
+.codefile .imp {font-weight: bold; color: red;}
+.codefile li, .codefile .li1 {font-weight: normal; vertical-align:top;}
+.codefile .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.codefile .li2 {font-weight: bold; vertical-align:top;}
+.codefile .kw1 {color: #000088; font-weight: bold;}
+.codefile .kw2 {color: #000088; font-weight: bold;}
+.codefile .kw1 {color: #000000;  font-weight: bold;}
+.codefile .kw2 {color: #000000; font-weight: bold;}
+.codefile .kw3 {color: #006600; font-weight: bold;}
+.codefile .kw4 {color: #006600; font-weight: bold;}
+.codefile .kw5 {color: #003399; font-weight: bold;}
+.codefile .kw6 {color: #003399; font-weight: bold;}
+.codefile .kw7 {color: #003399; font-weight: bold;}
+.codefile .kw8 {color: #003399; font-weight: bold;}
+.codefile .kw9 {color: #003399; font-weight: bold;}
+.codefile .kw10 {color: #003399; font-weight: bold;}
+.codefile .kw11 {color: #003399; font-weight: bold;}
+.codefile .kw12 {color: #003399; font-weight: bold;}
+.codefile .kw13 {color: #003399; font-weight: bold;}
+.codefile .kw14 {color: #003399; font-weight: bold;}
+.codefile .kw15 {color: #003399; font-weight: bold;}
+.codefile .kw16 {color: #003399; font-weight: bold;}
+.codefile .kw17 {color: #003399; font-weight: bold;}
+.codefile .kw18 {color: #003399; font-weight: bold;}
+.codefile .kw19 {color: #003399; font-weight: bold;}
+.codefile .kw20 {color: #003399; font-weight: bold;}
+.codefile .kw21 {color: #003399; font-weight: bold;}
+.codefile .kw22 {color: #003399; font-weight: bold;}
+.codefile .kw23 {color: #003399; font-weight: bold;}
+.codefile .kw24 {color: #003399; font-weight: bold;}
+.codefile .kw25 {color: #003399; font-weight: bold;}
+.codefile .kw26 {color: #003399; font-weight: bold;}
+.codefile .kw27 {color: #003399; font-weight: bold;}
+.codefile .kw28 {color: #003399; font-weight: bold;}
+.codefile .kw29 {color: #003399; font-weight: bold;}
+.codefile .kw30 {color: #003399; font-weight: bold;}
+.codefile .kw31 {color: #003399; font-weight: bold;}
+.codefile .kw32 {color: #003399; font-weight: bold;}
+.codefile .kw33 {color: #003399; font-weight: bold;}
+.codefile .kw34 {color: #003399; font-weight: bold;}
+.codefile .kw35 {color: #003399; font-weight: bold;}
+.codefile .kw36 {color: #003399; font-weight: bold;}
+.codefile .kw37 {color: #003399; font-weight: bold;}
+.codefile .kw38 {color: #003399; font-weight: bold;}
+.codefile .kw39 {color: #003399; font-weight: bold;}
+.codefile .kw40 {color: #003399; font-weight: bold;}
+.codefile .kw41 {color: #003399; font-weight: bold;}
+.codefile .kw42 {color: #003399; font-weight: bold;}
+.codefile .kw43 {color: #003399; font-weight: bold;}
+.codefile .kw44 {color: #003399; font-weight: bold;}
+.codefile .kw45 {color: #003399; font-weight: bold;}
+.codefile .kw46 {color: #003399; font-weight: bold;}
+.codefile .kw47 {color: #003399; font-weight: bold;}
+.codefile .kw48 {color: #003399; font-weight: bold;}
+.codefile .kw49 {color: #003399; font-weight: bold;}
+.codefile .kw50 {color: #003399; font-weight: bold;}
+.codefile .kw51 {color: #003399; font-weight: bold;}
+.codefile .kw52 {color: #003399; font-weight: bold;}
+.codefile .kw53 {color: #003399; font-weight: bold;}
+.codefile .kw54 {color: #003399; font-weight: bold;}
+.codefile .kw55 {color: #003399; font-weight: bold;}
+.codefile .kw56 {color: #003399; font-weight: bold;}
+.codefile .kw57 {color: #003399; font-weight: bold;}
+.codefile .kw58 {color: #003399; font-weight: bold;}
+.codefile .kw59 {color: #003399; font-weight: bold;}
+.codefile .kw60 {color: #003399; font-weight: bold;}
+.codefile .kw61 {color: #003399; font-weight: bold;}
+.codefile .kw62 {color: #003399; font-weight: bold;}
+.codefile .kw63 {color: #003399; font-weight: bold;}
+.codefile .kw64 {color: #003399; font-weight: bold;}
+.codefile .kw65 {color: #003399; font-weight: bold;}
+.codefile .kw66 {color: #003399; font-weight: bold;}
+.codefile .kw67 {color: #003399; font-weight: bold;}
+.codefile .kw68 {color: #003399; font-weight: bold;}
+.codefile .kw69 {color: #003399; font-weight: bold;}
+.codefile .kw70 {color: #003399; font-weight: bold;}
+.codefile .kw71 {color: #003399; font-weight: bold;}
+.codefile .kw72 {color: #003399; font-weight: bold;}
+.codefile .kw73 {color: #003399; font-weight: bold;}
+.codefile .kw74 {color: #003399; font-weight: bold;}
+.codefile .kw75 {color: #003399; font-weight: bold;}
+.codefile .kw76 {color: #003399; font-weight: bold;}
+.codefile .kw77 {color: #003399; font-weight: bold;}
+.codefile .kw78 {color: #003399; font-weight: bold;}
+.codefile .kw79 {color: #003399; font-weight: bold;}
+.codefile .kw80 {color: #003399; font-weight: bold;}
+.codefile .kw81 {color: #003399; font-weight: bold;}
+.codefile .kw82 {color: #003399; font-weight: bold;}
+.codefile .kw83 {color: #003399; font-weight: bold;}
+.codefile .kw84 {color: #003399; font-weight: bold;}
+.codefile .kw85 {color: #003399; font-weight: bold;}
+.codefile .kw86 {color: #003399; font-weight: bold;}
+.codefile .kw87 {color: #003399; font-weight: bold;}
+.codefile .kw88 {color: #003399; font-weight: bold;}
+.codefile .kw89 {color: #003399; font-weight: bold;}
+.codefile .kw90 {color: #003399; font-weight: bold;}
+.codefile .kw91 {color: #003399; font-weight: bold;}
+.codefile .kw92 {color: #003399; font-weight: bold;}
+.codefile .kw93 {color: #003399; font-weight: bold;}
+.codefile .kw94 {color: #003399; font-weight: bold;}
+.codefile .kw95 {color: #003399; font-weight: bold;}
+.codefile .kw96 {color: #003399; font-weight: bold;}
+.codefile .kw97 {color: #003399; font-weight: bold;}
+.codefile .kw98 {color: #003399; font-weight: bold;}
+.codefile .kw99 {color: #003399; font-weight: bold;}
+.codefile .kw100 {color: #003399; font-weight: bold;}
+.codefile .kw101 {color: #003399; font-weight: bold;}
+.codefile .kw102 {color: #003399; font-weight: bold;}
+.codefile .kw103 {color: #003399; font-weight: bold;}
+.codefile .kw104 {color: #003399; font-weight: bold;}
+.codefile .kw105 {color: #003399; font-weight: bold;}
+.codefile .kw106 {color: #003399; font-weight: bold;}
+.codefile .kw107 {color: #003399; font-weight: bold;}
+.codefile .kw108 {color: #003399; font-weight: bold;}
+.codefile .kw109 {color: #003399; font-weight: bold;}
+.codefile .kw110 {color: #003399; font-weight: bold;}
+.codefile .kw111 {color: #003399; font-weight: bold;}
+.codefile .kw112 {color: #003399; font-weight: bold;}
+.codefile .kw113 {color: #003399; font-weight: bold;}
+.codefile .kw114 {color: #003399; font-weight: bold;}
+.codefile .kw115 {color: #003399; font-weight: bold;}
+.codefile .kw116 {color: #003399; font-weight: bold;}
+.codefile .kw117 {color: #003399; font-weight: bold;}
+.codefile .kw118 {color: #003399; font-weight: bold;}
+.codefile .kw119 {color: #003399; font-weight: bold;}
+.codefile .kw120 {color: #003399; font-weight: bold;}
+.codefile .kw121 {color: #003399; font-weight: bold;}
+.codefile .kw122 {color: #003399; font-weight: bold;}
+.codefile .kw123 {color: #003399; font-weight: bold;}
+.codefile .kw124 {color: #003399; font-weight: bold;}
+.codefile .kw125 {color: #003399; font-weight: bold;}
+.codefile .kw126 {color: #003399; font-weight: bold;}
+.codefile .kw127 {color: #003399; font-weight: bold;}
+.codefile .kw128 {color: #003399; font-weight: bold;}
+.codefile .kw129 {color: #003399; font-weight: bold;}
+.codefile .kw130 {color: #003399; font-weight: bold;}
+.codefile .kw131 {color: #003399; font-weight: bold;}
+.codefile .kw132 {color: #003399; font-weight: bold;}
+.codefile .kw133 {color: #003399; font-weight: bold;}
+.codefile .kw134 {color: #003399; font-weight: bold;}
+.codefile .kw135 {color: #003399; font-weight: bold;}
+.codefile .kw136 {color: #003399; font-weight: bold;}
+.codefile .kw137 {color: #003399; font-weight: bold;}
+.codefile .kw138 {color: #003399; font-weight: bold;}
+.codefile .kw139 {color: #003399; font-weight: bold;}
+.codefile .kw140 {color: #003399; font-weight: bold;}
+.codefile .kw141 {color: #003399; font-weight: bold;}
+.codefile .kw142 {color: #003399; font-weight: bold;}
+.codefile .kw143 {color: #003399; font-weight: bold;}
+.codefile .kw144 {color: #003399; font-weight: bold;}
+.codefile .kw145 {color: #003399; font-weight: bold;}
+.codefile .kw146 {color: #003399; font-weight: bold;}
+.codefile .kw147 {color: #003399; font-weight: bold;}
+.codefile .kw148 {color: #003399; font-weight: bold;}
+.codefile .kw149 {color: #003399; font-weight: bold;}
+.codefile .kw150 {color: #003399; font-weight: bold;}
+.codefile .kw151 {color: #003399; font-weight: bold;}
+.codefile .kw152 {color: #003399; font-weight: bold;}
+.codefile .kw153 {color: #003399; font-weight: bold;}
+.codefile .kw154 {color: #003399; font-weight: bold;}
+.codefile .kw155 {color: #003399; font-weight: bold;}
+.codefile .kw156 {color: #003399; font-weight: bold;}
+.codefile .kw157 {color: #003399; font-weight: bold;}
+.codefile .kw158 {color: #003399; font-weight: bold;}
+.codefile .kw159 {color: #003399; font-weight: bold;}
+.codefile .kw160 {color: #003399; font-weight: bold;}
+.codefile .kw161 {color: #003399; font-weight: bold;}
+.codefile .kw162 {color: #003399; font-weight: bold;}
+.codefile .kw163 {color: #003399; font-weight: bold;}
+.codefile .kw164 {color: #003399; font-weight: bold;}
+.codefile .kw165 {color: #003399; font-weight: bold;}
+.codefile .kw166 {color: #003399; font-weight: bold;}
+.codefile .co1,
+.codefile .co2,
+.codefile .co3,
+.codefile .coMULTI {color: #a1a100;}
+
+/*
+.codefile .co2 {color: #ff0000; font-style: italic;}
+.codefile .co3 {color: #008000; font-style: italic;}
+.codefile .coMULTI {color: #808080; font-style: italic;}
+*/
+.codefile .es0 {color: #000099; font-weight: bold;}
+.codefile .es2 {color: #000099; font-weight: bold;}
+.codefile .br0 {color: #00AA00;}
+.codefile .sy0 {color: #00AA00;}
+.codefile .st0 {color: #aa0000;}
+.codefile .nu0 {color: #cc66cc;}
+.codefile .re0 {color: #cc00cc;}
+.codefile .re1 {color: #6666ff;}
+.codefile .re2 {color: #3333ff;}
+.codefile .re3 {color: #933;}
+.codefile .ln-xtra, .codefile li.ln-xtra, .codefile div.ln-xtra {background-color: #ffc;}
+.codefile span.xtra { display:block; }
+.codefile .sc-2 {color: #404040;}
+.codefile .sc-1 {color: #808080; font-style: italic;}
+.codefile .sc0 {color: #00bbdd;}
+.codefile .sc1 {color: #ddbb00;}
+.codefile .sc2 {color: #009900;}
+</style>
+
+<style type="text/css" media="print">
+.codefile {
+	border: 1px dashed #2F6FAB;
+}
+
+.codefile pre, .codefile xmp {
+	font-size: 9pt;
+	letter-spacing: -0.5pt;
+	line-height: 1em;
+	margin: 0;
+	padding: 0.25em;
+	overflow: hidden;
+}
+
+.saveforyourrecords, .tooltip {
+	display: none;
+}
+</style>
+</head>
+
+<body>
+    <h1>Homework Turnin</h1>
+
+
+<div id="main">
+    <h2 id="studentinfoheader">
+
+                    <span class="columnlabel">Name:</span>
+            Borui                        Zhang            <br>
+        
+        <span class="columnlabel">Account:</span>
+            zhangbor (zhangbor@uw.edu)
+        <br>
+
+                    <span class="columnlabel">Student ID:</span>
+            1772098            <br>
+        
+                    <span class="columnlabel">Section:</span>
+            AL            <br>
+        
+        <span class="columnlabel">Course:</span>
+        CSE         143        18wi        <br> <span class="columnlabel">Assignment:</span>
+        a2    </h2>
+
+
+    <h2 id="studentinfoheader">
+        <span class="columnlabel">Receipt ID:</span>
+        56e0f7e82eb16fbf5b2ea74b785f42d8    </h2>
+
+<p class="tooltip">Replacing prior submission from Wed 2018/01/17 10:28pm.</p>
+
+<!--
+<div class="warning">
+    NOTE: Emailed receipts temporarily disabled because of a server problem.  Please save a copy of this web page because you won't be receiving a receipt email.
+</div>
+-->
+
+
+    <h3 class="success">Turnin Successful!</h3>
+
+    <p class="saveforyourrecords">
+        Please <strong style="color: #090; background-color: #ffb">save or
+            print a copy of this page</strong> for your records. A receipt has also been emailed to you, but you should still save or print a copy of this web page to make certain that you have proof of your turnin. <strong>If
+            your files become lost or damaged and you do not have any record of
+            your receipt, we will not be able to give you any credit for your
+            work.</strong>
+    </p>
+
+    
+    <p>The following file(s) were received:</p>
+
+    
+
+    <div class="codefile">
+        <h2>
+            Guitar37.java &nbsp;
+            <span class="aside">(2391 bytes)</span>
+        </h2>
+
+        <pre><pre class="java5"><ol><li class="li2"><div class="de2"><span class="co1">// Borui (Alex) Zhang</span></div></li><li class="li2"><div class="de2"><span class="co1">// 1/18/2018</span></div></li><li class="li2"><div class="de2"><span class="co1">// CSE 143 AL </span></div></li><li class="li2"><div class="de2"><span class="co1">// TA: Kyle Pierce</span></div></li><li class="li2"><div class="de2"><span class="co1">// Homework 2</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2"><span class="co1">// Class Guitar37 simulates a guitar with 37 strings</span></div></li><li class="li2"><div class="de2"><span class="co1">// which allows users to play notes</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2"><span class="kw2">public</span> <span class="kw2">class</span> Guitar37 <span class="kw2">implements</span> Guitar <span class="br0">{</span></div></li><li class="li2"><div class="de2">   <span class="kw2">private</span> GuitarString<span class="br0">[</span><span class="br0">]</span> list<span class="sy0">;</span> <span class="co1">// list of guitar strings</span></div></li><li class="li2"><div class="de2">   <span class="kw2">private</span> <span class="kw3">int</span> times<span class="sy0">;</span> <span class="co1">// total times of tic</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw2">final</span> <span class="kw3">int</span> TOTAL_STRINGS = <span class="nu0">37</span><span class="sy0">;</span> <span class="co1">// number of strings</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw2">final</span> <span class="kw3">int</span> A_POSITION = <span class="nu0">24</span><span class="sy0">;</span> <span class="co1">// standard index of concert A</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw2">final</span> <span class="kw21">String</span> KEYBOARD =</div></li><li class="li2"><div class="de2">      <span class="st0">"q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' "</span><span class="sy0">;</span>  <span class="co1">// keyboard layout   </span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// constructs a Guitar with "TOTAL_STRING" number of strings</span></div></li><li class="li2"><div class="de2">   <span class="co1">// each string has a different pitch</span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> Guitar37<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      times = <span class="nu0">0</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      list = <span class="kw2">new</span> GuitarString<span class="br0">[</span>TOTAL_STRINGS<span class="br0">]</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="kw1">for</span> <span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> list.<span class="me1">length</span><span class="sy0">;</span> i++<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">         list<span class="br0">[</span>i<span class="br0">]</span> = <span class="kw2">new</span> GuitarString<span class="br0">(</span><span class="nu0">440</span> <span class="sy0">*</span> <span class="kw21">Math</span>.<span class="me1">pow</span><span class="br0">(</span><span class="nu0">2</span>, <span class="br0">(</span><span class="kw3">double</span><span class="br0">)</span><span class="br0">(</span>i - <span class="nu0">24</span><span class="br0">)</span> / <span class="nu0">12</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="br0">}</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// allows user to play pitch by passing an integer value</span></div></li><li class="li2"><div class="de2">   <span class="co1">// does nothing if the pitch is out of range</span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw3">void</span> playNote<span class="br0">(</span><span class="kw3">int</span> pitch<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw3">int</span> index = pitch + A_POSITION<span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="kw1">if</span> <span class="br0">(</span>index <span class="sy0">&lt;</span> list.<span class="me1">length</span> <span class="sy0">&amp;&amp;</span> index <span class="sy0">&gt;</span>= <span class="nu0">0</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">         list<span class="br0">[</span>index<span class="br0">]</span>.<span class="me1">pluck</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="br0">}</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// returns true if key is contained in String KEYBOARD</span></div></li><li class="li2"><div class="de2">   <span class="co1">// false otherwise</span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw3">boolean</span> hasString<span class="br0">(</span><span class="kw3">char</span> key<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw2">return</span> KEYBOARD.<span class="me1">indexOf</span><span class="br0">(</span>key<span class="br0">)</span> <span class="sy0">&gt;</span>= <span class="nu0">0</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// pre: key is contained in String KEYBOARD </span></div></li><li class="li2"><div class="de2">   <span class="co1">//      (throws IllegalArgumentException if not) </span></div></li><li class="li2"><div class="de2">   <span class="co1">// post: allows user to play the pitch by passing one of</span></div></li><li class="li2"><div class="de2">   <span class="co1">//       the specified characters</span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw3">void</span> pluck<span class="br0">(</span><span class="kw3">char</span> key<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw1">if</span> <span class="br0">(</span><span class="sy0">!</span>hasString<span class="br0">(</span>key<span class="br0">)</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">         <span class="kw2">throw</span> <span class="kw2">new</span> <span class="kw21">IllegalArgumentException</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="br0">}</span></div></li><li class="li2"><div class="de2">      <span class="kw3">int</span> index = KEYBOARD.<span class="me1">indexOf</span><span class="br0">(</span>key<span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      list<span class="br0">[</span>index<span class="br0">]</span>.<span class="me1">pluck</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// returns the sum (double) of all samples from all strings in the guitar</span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw3">double</span> sample<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw3">double</span> sum = list<span class="br0">[</span><span class="nu0">0</span><span class="br0">]</span>.<span class="me1">sample</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="kw1">for</span> <span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">1</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> list.<span class="me1">length</span><span class="sy0">;</span> i++<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">         sum += list<span class="br0">[</span>i<span class="br0">]</span>.<span class="me1">sample</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="br0">}</span></div></li><li class="li2"><div class="de2">      <span class="kw2">return</span> sum<span class="sy0">;</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// tics guitar strings one time and adds 1 to total tic times </span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw3">void</span> tic<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw1">for</span> <span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> list.<span class="me1">length</span><span class="sy0">;</span> i++<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">         list<span class="br0">[</span>i<span class="br0">]</span>.<span class="me1">tic</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="br0">}</span></div></li><li class="li2"><div class="de2">      times++<span class="sy0">;</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// returns (an integer) the times tic has been called</span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw3">int</span> time<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw2">return</span> times<span class="sy0">;</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2"><span class="br0">}</span></div></li></ol></pre></pre>
+    </div>
+
+    
+    <div class="codefile">
+        <h2>
+            GuitarString.java &nbsp;
+            <span class="aside">(2670 bytes)</span>
+        </h2>
+
+        <pre><pre class="java5"><ol><li class="li2"><div class="de2"><span class="co1">// Borui (Alex) Zhang</span></div></li><li class="li2"><div class="de2"><span class="co1">// 1/18/2018</span></div></li><li class="li2"><div class="de2"><span class="co1">// CSE 143 AL </span></div></li><li class="li2"><div class="de2"><span class="co1">// TA: Kyle Pierce</span></div></li><li class="li2"><div class="de2"><span class="co1">// Homework 2</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2"><span class="co1">// Class GuitarString simulates a vibrating guitar string</span></div></li><li class="li2"><div class="de2"><span class="co1">// with a given frequency. It acts as a ring buffer.</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2"><span class="kw2">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span> <span class="co1">// for Queue</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2"><span class="kw2">public</span> <span class="kw2">class</span> GuitarString <span class="br0">{</span></div></li><li class="li2"><div class="de2">   <span class="kw2">private</span> <span class="kw46">Queue</span><span class="sy0">&lt;</span><span class="kw21">Double</span><span class="sy0">&gt;</span> ringBuffer<span class="sy0">;</span></div></li><li class="li2"><div class="de2">   <span class="kw2">private</span> <span class="kw3">int</span> capacity<span class="sy0">;</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw2">static</span> <span class="kw2">final</span> <span class="kw3">double</span> ENERGY_DECAY_FACTOR = <span class="nu0">0.996</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// pre: frequency &gt; 0 &amp;&amp; capacity &gt;= 2 </span></div></li><li class="li2"><div class="de2">   <span class="co1">//      (throws IllegalArgumentException if not) </span></div></li><li class="li2"><div class="de2">   <span class="co1">// post: constructs a resting GuitarString of with a capacity</span></div></li><li class="li2"><div class="de2">   <span class="co1">//       which creates a ring buffer of desired capacity</span></div></li><li class="li2"><div class="de2">   <span class="co1">// parameter: double frequency is the frequency of a note</span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> GuitarString<span class="br0">(</span><span class="kw3">double</span> frequency<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw1">if</span> <span class="br0">(</span>frequency <span class="sy0">&lt;</span>= <span class="nu0">0</span> || calCapacity<span class="br0">(</span>frequency<span class="br0">)</span> <span class="sy0">&lt;</span> <span class="nu0">2</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">         <span class="kw2">throw</span> <span class="kw2">new</span> <span class="kw21">IllegalArgumentException</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="br0">}</span> </div></li><li class="li2"><div class="de2">      ringBuffer = <span class="kw2">new</span> <span class="kw46">LinkedList</span><span class="sy0">&lt;</span><span class="kw21">Double</span><span class="sy0">&gt;</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      capacity = calCapacity<span class="br0">(</span>frequency<span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="kw1">for</span> <span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> capacity<span class="sy0">;</span> i++<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">         ringBuffer.<span class="me1">add</span><span class="br0">(</span><span class="nu0">0.0</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="br0">}</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// pre: init.length &gt;= 2 </span></div></li><li class="li2"><div class="de2">   <span class="co1">//      (throws IllegalArgumentException if not) </span></div></li><li class="li2"><div class="de2">   <span class="co1">// post: constructs a GuitarString with capacity equals init's length</span></div></li><li class="li2"><div class="de2">   <span class="co1">//       and initializes the contents of ring buffer</span></div></li><li class="li2"><div class="de2">   <span class="co1">//       as the values in array double[] init</span></div></li><li class="li2"><div class="de2">   <span class="co1">// parameter: double[] init stores values for ring buffer </span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> GuitarString<span class="br0">(</span><span class="kw3">double</span><span class="br0">[</span><span class="br0">]</span> init<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw1">if</span> <span class="br0">(</span>init.<span class="me1">length</span> <span class="sy0">&lt;</span> <span class="nu0">2</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">         <span class="kw2">throw</span> <span class="kw2">new</span> <span class="kw21">IllegalArgumentException</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>      </div></li><li class="li2"><div class="de2">      <span class="br0">}</span></div></li><li class="li2"><div class="de2">      ringBuffer = <span class="kw2">new</span> <span class="kw46">LinkedList</span><span class="sy0">&lt;</span><span class="kw21">Double</span><span class="sy0">&gt;</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      capacity = init.<span class="me1">length</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="kw1">for</span> <span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> init.<span class="me1">length</span><span class="sy0">;</span> i++<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">         ringBuffer.<span class="me1">add</span><span class="br0">(</span>init<span class="br0">[</span>i<span class="br0">]</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="br0">}</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// replaces all the elements in the ring buffer with "capacity" </span></div></li><li class="li2"><div class="de2">   <span class="co1">// number of random values in the range of -0.5 &lt;= value &lt; 0.5</span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw3">void</span> pluck<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw1">while</span> <span class="br0">(</span><span class="sy0">!</span>ringBuffer.<span class="me1">isEmpty</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">         ringBuffer.<span class="me1">remove</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="br0">}</span></div></li><li class="li2"><div class="de2">      <span class="kw1">for</span> <span class="br0">(</span><span class="kw3">int</span> i = <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> capacity<span class="sy0">;</span> i++<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">         <span class="kw3">double</span> num = <span class="kw21">Math</span>.<span class="me1">random</span><span class="br0">(</span><span class="br0">)</span> - <span class="nu0">0.5</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">         ringBuffer.<span class="me1">add</span><span class="br0">(</span>num<span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      <span class="br0">}</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// removes the first value in ringBuffer</span></div></li><li class="li2"><div class="de2">   <span class="co1">// add the average of the first two values in ringBuffer times</span></div></li><li class="li2"><div class="de2">   <span class="co1">// the ENERGY_DECAY_FACTOR to the end of the list</span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw3">void</span> tic<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw3">double</span> num1 = ringBuffer.<span class="me1">remove</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">      ringBuffer.<span class="me1">add</span><span class="br0">(</span><span class="br0">(</span>num1 + sample<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span> / <span class="nu0">2</span> <span class="sy0">*</span> ENERGY_DECAY_FACTOR<span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// returns the first value (type double) in the ring buffer</span></div></li><li class="li2"><div class="de2">   <span class="kw2">public</span> <span class="kw3">double</span> sample<span class="br0">(</span><span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw2">return</span> ringBuffer.<span class="me1">peek</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2">&nbsp;</div></li><li class="li2"><div class="de2">   <span class="co1">// returns an integer capacity (rounded)</span></div></li><li class="li2"><div class="de2">   <span class="kw2">private</span> <span class="kw3">int</span> calCapacity<span class="br0">(</span><span class="kw3">double</span> frequency<span class="br0">)</span> <span class="br0">{</span></div></li><li class="li2"><div class="de2">      <span class="kw2">return</span> <span class="br0">(</span><span class="kw3">int</span><span class="br0">)</span> <span class="kw21">Math</span>.<span class="me1">round</span><span class="br0">(</span>StdAudio.<span class="me1">SAMPLE_RATE</span> / frequency<span class="br0">)</span><span class="sy0">;</span></div></li><li class="li2"><div class="de2">   <span class="br0">}</span></div></li><li class="li2"><div class="de2"><span class="br0">}</span></div></li></ol></pre></pre>
+    </div>
+
+    
+</div>
+
+
+    <div id="loading">One moment...</div>
+    <pre id="dumptarget"></pre>
+
+    
+            <script async="" src="./Homework Turnin_files/analytics.js.download"></script><script src="./Homework Turnin_files/additional.js.download" type="text/javascript"></script>
+
+                    <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-78977559-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+    
+
+
+</body></html>
